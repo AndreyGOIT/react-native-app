@@ -1,17 +1,8 @@
 import React from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  TextInput,
-  View,
-  Text,
-  TouchableOpacity,
-  Platform,
-} from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import { RegistrationScreen } from "./Screens/RegistrationScreen";
 
 export default function App() {
-  console.log(Platform);
   return (
     <View style={styles.container}>
       <ImageBackground
