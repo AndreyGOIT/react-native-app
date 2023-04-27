@@ -1,56 +1,64 @@
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
   TextInput,
   Text,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Platform,
 } from "react-native";
 
 export const RegistrationScreen = () => {
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   return (
-    <View style={styles.form}>
-      <Text style={styles.formTitle}>Регистрация</Text>
-      <View>
-        <TextInput
-          style={styles.input}
-          textAlign={"left"}
-          placeholder="Логин"
-        />
-      </View>
-      <View style={{ marginTop: 16 }}>
-        <TextInput
-          style={styles.input}
-          textAlign={"left"}
-          placeholder="Адрес электронной почты"
-        />
-      </View>
-      <View style={{ marginTop: 16 }}>
-        <TextInput
-          style={styles.input}
-          textAlign={"left"}
-          secureTextEntry={"true"}
-          placeholder="Пароль"
-        />
-      </View>
-      <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
-        <Text style={styles.btnTitle}>Зарегистрироваться</Text>
-      </TouchableOpacity>
-      <Text style={styles.formBottomTitle}>Уже есть аккаунт? Войти</Text>
-    </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={{ ...styles.form, marginBottom: isShowKeyboard ? 20 : 0 }}>
+          <Text style={styles.formTitle}>Регистрация</Text>
+          <View>
+            <TextInput
+              style={styles.input}
+              textAlign="left"
+              placeholder="Логин"
+              keyboardType="default"
+              onFocus={() => setIsShowKeyboard(true)}
+            />
+          </View>
+          <View style={{ marginTop: 16 }}>
+            <TextInput
+              style={styles.input}
+              textAlign="left"
+              placeholder="Адрес электронной почты"
+              keyboardType="email-address"
+              onFocus={() => setIsShowKeyboard(true)}
+            />
+          </View>
+          <View style={{ marginTop: 16 }}>
+            <TextInput
+              style={styles.input}
+              textAlign="left"
+              secureTextEntry="true"
+              placeholder="Пароль"
+              keyboardType="default"
+              onFocus={() => setIsShowKeyboard(true)}
+            />
+          </View>
+          <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
+            <Text style={styles.btnTitle}>Зарегистрироваться</Text>
+          </TouchableOpacity>
+          <Text style={styles.formBottomTitle}>Уже есть аккаунт? Войти</Text>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
-  //   container: {
-  //     flex: 1,
-  //     backgroundColor: "#fff",
-  //   },
-  //   image: {
-  //     flex: 1,
-  //     justifyContent: "center",
-  //     resizeMode: "cover",
-  //     // alignItems: "center",
-  //   },
   input: {
     paddingLeft: 16,
     backgroundColor: "#F6F6F6",
@@ -58,11 +66,9 @@ const styles = StyleSheet.create({
     borderColor: "#E8E8E8",
     height: 50,
     borderRadius: 8,
-    color: "#fff",
+    color: "#212121",
   },
   form: {
-    position: "absolute",
-    bottom: 0,
     width: "100%",
     height: 549,
     paddingTop: 92,
@@ -70,11 +76,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-
-    // marginHorizontal: 40,
+    // marginBottom: 10,
   },
   formTitle: {
-    fontFamily: "Roboto",
+    // fontFamily: "Roboto",
     fontSize: 30,
     fontWeight: 500,
     textAlign: "center",
@@ -92,19 +97,16 @@ const styles = StyleSheet.create({
     marginTop: 43,
     justifyContent: "center",
     alignItems: "center",
-    // marginHorizontal: 20,
   },
   btnTitle: {
     color: Platform.OS === "ios" ? "#f0f8ff" : "#000000",
     fontSize: 16,
   },
   formBottomTitle: {
-    fontFamily: "Roboto",
+    // fontFamily: "Roboto",
     fontSize: 16,
     fontWeight: 400,
     textAlign: "center",
     marginTop: 16,
   },
 });
-
-// export default RegistrationScreen;

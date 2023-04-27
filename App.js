@@ -1,5 +1,12 @@
 import React from "react";
-import { ImageBackground, StyleSheet, View } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  View,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import { RegistrationScreen } from "./Screens/RegistrationScreen";
 
 export default function App() {
@@ -9,24 +16,13 @@ export default function App() {
         style={styles.image}
         source={require("./assets/images/BG_Photo.jpg")}
       >
-        <RegistrationScreen />
-        {/* <View style={styles.form}>
-          <View>
-            <Text style={styles.inputTitle}>EMAIL ADDRESS</Text>
-            <TextInput style={styles.input} textAlign={"center"} />
-          </View>
-          <View style={{ marginTop: 20 }}>
-            <Text style={styles.inputTitle}>PASSWORD</Text>
-            <TextInput
-              style={styles.input}
-              textAlign={"center"}
-              secureTextEntry={"true"}
-            />
-          </View>
-          <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
-            <Text style={styles.btnTitle}>SIGN IN</Text>
-          </TouchableOpacity>
-        </View> */}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <RegistrationScreen />
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
       </ImageBackground>
     </View>
   );
@@ -39,7 +35,7 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
     resizeMode: "cover",
     // alignItems: "center",
   },
