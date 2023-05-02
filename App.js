@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  View,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from "react-native";
-import { RegistrationScreen } from "./Screens/RegistrationScreen";
+import { ImageBackground, StyleSheet, View } from "react-native";
+// import { RegistrationScreen } from "./Screens/RegistrationScreen";
+import { LoginScreen } from "./Screens/LoginScreen";
 
 export default function App() {
   return (
@@ -16,13 +10,8 @@ export default function App() {
         style={styles.image}
         source={require("./assets/images/BG_Photo.jpg")}
       >
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-        >
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <RegistrationScreen />
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
+        {/* <RegistrationScreen /> */}
+        <LoginScreen />
       </ImageBackground>
     </View>
   );

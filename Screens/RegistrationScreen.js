@@ -142,5 +142,6 @@ const styles = StyleSheet.create({
     fontWeight: 400,
     textAlign: "center",
     marginTop: 16,
+    color: "#1B4371",
   },
 });
